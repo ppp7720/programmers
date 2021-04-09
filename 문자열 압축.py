@@ -5,10 +5,11 @@ def solution(s):
     for j in range(1,len(s)//2+1):
         r = ""
         l = [s[i:i+j] for i in range(0,len(s),j)]
+        l.reverse()
         n = 1
         while l:
-            c = l.pop(0)
-            if [c] == l[0:1]:
+            c = l.pop()
+            if [c] == l[-1:]:
                 n += 1
             else:
                 if n != 1:
