@@ -16,7 +16,6 @@ def solution(s):
                     r += str(n)
                 r += c
                 n = 1
-        print(r,j)
         answer = len(r) if len(r) < answer else answer
     return answer
 
