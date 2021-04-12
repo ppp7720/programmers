@@ -1,16 +1,30 @@
-height = [1,8,6,2,5,4,8,3,7]
-s = 0
-for n in set(height):
-    l, r = 0, 0
-    for i in range(len(height)):
-        if height[i] >= n:
-            l = i
-            break
-    for j in range(len(height)-1,0,-1):
-        if height[j] >= n:
-            r = j
-            break
-    if (r-l)*n >= s:
-        s = (r-l)*n
+height = [6,4,3,1,4,6,99,62,1,2,6]
 
-print(s)
+class Solution:
+    
+    def maxArea(self, height):
+        i, j = 0, len(height)-1
+        
+        max_area = 0
+
+        for n in sorted(set(height)):
+            while height[i] < n: i += 1
+            while height[j] < n: j -= 1
+            max_area = max((j-i)*n, max_area)
+
+        return max_area
+
+    def maxArea2(self, height):
+        i, j = 0, len(height)-1
+        
+        max_area = min(height[i], height[j]) * (j-i)
+
+        while i < j:
+            if height[i] < height[j]: i += 1
+            else: j -= 1
+            max_area = max(max_area, min(height[i], height[j]) * (j-i))
+
+        return max_area
+
+s = Solution()
+print(s.maxArea2(height))
